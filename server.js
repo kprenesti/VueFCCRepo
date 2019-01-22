@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
+const bodyParser = require('body-parser');
 
 // DATABASE
 const mongoose = require('mongoose');
@@ -12,17 +13,17 @@ mongoose.connect(process.env.DB_URL, {
   .catch(err => console.log(err));
 
 
+// MIDDLEWARE
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
 // ROUTE INFO
-const users = require('./routes/api/users');
-const posts = require('./routes/api/posts');
-const profile = require('./routes/api/profile');
+const users = require('./Routes/api/users');
+const posts = require('./Routes/api/posts');
+const profile = require('./Routes/api/profile');
 app.use('/api/users', users);
 app.use('/api/posts', posts);
 app.use('/api/profile', profile);
-
-app.get('/', (req, res) => {
-  res.send('Hello');
-})
 
 // APP INIT
 app.listen(port, () => console.log(`Server listening on port ${port}`));
