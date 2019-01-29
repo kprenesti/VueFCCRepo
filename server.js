@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
 const bodyParser = require('body-parser');
+const passport = require('passport');
 
 // DATABASE
 const mongoose = require('mongoose');
@@ -14,9 +15,14 @@ mongoose.connect(process.env.DB_URL, {
 
 
 // MIDDLEWARE
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(bodyParser.json());
+app.use(passport.initialize());
 
+// PASSPORT CONFIG
+require('./config/passport')(passport);
 // ROUTE INFO
 const users = require('./Routes/api/users');
 const posts = require('./Routes/api/posts');
