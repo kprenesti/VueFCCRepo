@@ -9,6 +9,7 @@ const passport = require('passport');
 
 // Validation
 const validateRegisterInput = require('../../validation/register');
+const validateLoginInput = require('../../validation/login');
 
 // @route   GET api/users/test
 // @desc    Tests users route
@@ -32,9 +33,8 @@ router.post('/register', (req, res) => {
     })
     .then((user) => {
       if (user) {
-        res.status(400).json({
-          msg: "Email already in use.  Please login."
-        }).redirect('/login');
+        errors.email = "User already exists. Please login."
+        res.status(400).redirect('/login').json(errors);
       } else {
         const avatar = gravatar.url(req.body.email, {
           s: '200',
@@ -67,6 +67,15 @@ router.post('/register', (req, res) => {
 // @desc    Login User / Return JSON Web Token
 // @access  Public
 router.post('/login', (req, res) => {
+  // Pre-validate inputs
+  const {
+    errors,
+    isValid
+  } = validateLoginInput(req.body);
+  if (!isValid) {
+    res.status(400).json(errors);
+  }
+
   // Find user by email address.
   User.findOne({
       email: req.body.email
