@@ -3,13 +3,16 @@ const Schema = mongoose.Schema;
 
 const ProfileSchema = new Schema({
   user: {
-    type: Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId, //Will be passed in from JWT token
     ref: 'users'
   },
   handle: {
     type: String,
     required: true,
     max: 40
+  },
+  githubusername: {
+    type: String
   },
   company: {
     type: String
@@ -29,9 +32,6 @@ const ProfileSchema = new Schema({
     required: true
   },
   bio: {
-    type: String
-  },
-  githubUserName: {
     type: String
   },
   experience: [{
@@ -85,8 +85,25 @@ const ProfileSchema = new Schema({
     description: {
       type: String
     }
-  }]
+  }],
+  social: {
+    youtube: {
+      type: String
+    },
+    twitter: {
+      type: String
+    },
+    facebook: {
+      type: String
+    },
+    linkedin: {
+      type: String
+    },
+    instagram: {
+      type: String
+    }
+  }
 });
 
-
-module.exports = ProfileSchema;
+const Profile = mongoose.model('profile', ProfileSchema);
+module.exports = Profile;
