@@ -3,13 +3,16 @@ const Schema = mongoose.Schema;
 
 const ProfileSchema = new Schema({
   user: {
-    type: Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId, //Will be passed in from JWT token
     ref: 'users'
   },
   handle: {
     type: String,
     required: true,
     max: 40
+  },
+  githubusername: {
+    type: String
   },
   company: {
     type: String
@@ -29,9 +32,6 @@ const ProfileSchema = new Schema({
     required: true
   },
   bio: {
-    type: String
-  },
-  githubUserName: {
     type: String
   },
   experience: [{
@@ -89,26 +89,22 @@ const ProfileSchema = new Schema({
       type: String
     }
   }],
-  social: [{
+  social: {
     youtube: {
-      type: String
-    },
-    facebook: {
       type: String
     },
     twitter: {
       type: String
     },
+    facebook: {
+      type: String
+    },
     linkedin: {
       type: String
     },
-    github: {
+    instagram: {
       type: String
     }
-  }],
-  date: {
-    type: Date,
-    default: Date.now
   }
 });
 
