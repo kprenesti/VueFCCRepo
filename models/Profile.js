@@ -82,6 +82,9 @@ const ProfileSchema = new Schema({
       type: Boolean,
       default: false
     },
+    degree: {
+      type: String
+    },
     description: {
       type: String
     }
