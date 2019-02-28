@@ -16,4 +16,4 @@ const ValidatePostInput = (data) => {
 
 };
 
-modules.exports = ValidatePostInput;
+module.exports = ValidatePostInput;
