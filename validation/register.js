@@ -23,11 +23,12 @@ const validateRegisterInput = (data) => {
     errors.password = "Please enter a unique password that is at least 8 characters long and contains a number and a letter."
   }
 
-  if (validator.isLength(data.password), {
-      min: 8
-    }) {
-    errors.password = "Password too short.  Password must be at least 8 characters long."
-  }
+  // if (!validator.isLength(data.password), {
+  //     min: 8,
+  //     max: 40
+  //   }) {
+  //   errors.password = "Password too short.  Password must be at least 8 characters long."
+  // }
 
   if (isEmpty(data.password2)) {
     errors.password2 = "Please verify your password.";

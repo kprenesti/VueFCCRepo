@@ -28,4 +28,4 @@ const validateExperienceInput = (data) => {
 };
 
 
-modules.export = validateExperienceInput;
+module.export = validateExperienceInput;

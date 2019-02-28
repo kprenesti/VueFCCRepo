@@ -32,7 +32,7 @@ router.post('/register', (req, res) => {
     .then((user) => {
       if (user) {
         errors.email = "User already exists. Please login."
-        res.status(400).redirect('/login').json(errors);
+        res.status(400).json(errors);
       } else {
         const avatar = gravatar.url(req.body.email, {
           s: '200',
@@ -58,6 +58,7 @@ router.post('/register', (req, res) => {
         })
       }
     })
+    .catch(err => res.json(err));
 });
 
 
