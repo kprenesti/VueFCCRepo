@@ -7,13 +7,17 @@
     "lint": "eslint src/**",
     "test": "jest src",
     "coverage": "jest --collectCoverageFrom=src/**.js --coverage src",
-    "dev": "nodemon server.js"
+    "server": "nodemon server.js",
+    "client-install": "cd client && yarn install",
+    "client": "cd client && yarn start",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "author": "",
+  "author": "Krista Prenesti",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
     "cookie-parser": "^1.4.3",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
@@ -25,8 +29,7 @@
     "validator": "^10.11.0"
   },
   "devDependencies": {
-    "eslint": "^5.12.1",
-    "nodemon": "^1.18.9",
-    "jest": "^24.0.0"
+    "eslint": "^5.12.0",
+    "nodemon": "^1.18.9"
   }
 }
