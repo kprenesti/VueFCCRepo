@@ -8,8 +8,8 @@
     "test": "jest src",
     "coverage": "jest --collectCoverageFrom=src/**.js --coverage src",
     "server": "nodemon server.js",
-    "client-install": "cd client && yarn install",
-    "client": "cd client && yarn start",
+    "client-install": "cd \"./client\" && yarn install",
+    "client": "cd \"./client\" && yarn start",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "Krista Prenesti",
